@@ -13,14 +13,17 @@ Wildfires are difficult to anticipate because risk depends on both visual fire/s
 ## Approach
 - **CNN (MobileNetV2, transfer learning)** — classifies satellite image tiles for fire/smoke presence.
   - Accuracy: **96.6%**
-- **LSTM** — forecasts short-term temperature trends from historical time-series data as a leading indicator of fire risk.
+- **LSTM (transfer learning)** — forecasts short-term temperature trends as a leading indicator of fire risk.
+  - Data sourced from the **NASA POWER API** (2019–2024 daily weather: temperature, humidity, wind, pressure, precipitation, solar radiation).
+  - An LSTM encoder is **pretrained** on a corpus of 25 nearby grid locations around the target area, then **fine-tuned** on the target location using **Keras Tuner (Hyperband)** for hyperparameter search.
+  - After tuning, the top encoder layers are unfrozen for a final fine-tuning pass.
   - RMSE: **0.36°C**
 - Outputs from both models are combined and visualized on an interactive risk map.
 
 ## Model Evaluation (my contribution)
-- Implemented **walk-forward (time-series) cross-validation** to avoid data leakage across time.
+- Implemented **walk-forward (time-series) cross-validation** (`TimeSeriesSplit`, 5 folds) on the target-location data to avoid data leakage across time.
 - CNN metrics: Accuracy, Precision, Recall, F1-score
-- LSTM metrics: MSE, RMSE, MAE
+- LSTM metrics: MSE, RMSE, MAE (computed after inverse-scaling predictions back to °C)
 
 ## Tech Stack
 | Layer | Technology |
@@ -36,7 +39,8 @@ flame-prophet-wildfire-prediction/
 ├── frontend/        # Next.js/React app (risk map UI)
 ├── backend/         # Flask API serving model predictions
 ├── models/          # Trained CNN & LSTM models
-├── notebooks/       # Training & evaluation notebooks
+├── notebooks/
+│   └── aol-artificial-intelligence-lstm.ipynb   # LSTM transfer-learning training & evaluation
 └── README.md
 ```
 
