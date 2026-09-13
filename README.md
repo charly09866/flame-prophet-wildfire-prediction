@@ -1,4 +1,4 @@
-# Flame Prophet 🔥 — Wildfire Risk Prediction System
+# Flame Prophet — Wildfire Risk Prediction System
 
 An end-to-end AI system that predicts wildfire risk by combining satellite image classification with temperature time-series forecasting, surfaced on an interactive risk map.
 
