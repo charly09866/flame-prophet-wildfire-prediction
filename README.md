@@ -33,29 +33,21 @@ Wildfires are difficult to anticipate because risk depends on both visual fire/s
 | ML/DL | TensorFlow / Keras |
 | Models | MobileNetV2 (CNN), LSTM |
 
-## Project Structure
+## Team Repository
+This was a group project. The full source code (frontend, backend, and AI models) is hosted in the team repository: **github.com/bit-loi/Flame-Prophet**. This repo focuses on documenting the project and my specific contribution (model evaluation).
+
+## This Repository
+This repo documents the project and hosts my individual contribution:
 ```
 flame-prophet-wildfire-prediction/
-├── frontend/        # Next.js/React app (risk map UI)
-├── backend/         # Flask API serving model predictions
-├── models/          # Trained CNN & LSTM models
 ├── notebooks/
 │   └── aol-artificial-intelligence-lstm.ipynb   # LSTM transfer-learning training & evaluation
 └── README.md
 ```
+For the complete, deployed application (frontend + backend + trained models), see the team repository linked above.
 
 ## Getting Started
-```bash
-# Backend
-cd backend
-pip install -r requirements.txt
-python app.py
-
-# Frontend
-cd frontend
-npm install
-npm run dev
-```
+This repo only contains the evaluation notebook. To run the full application (frontend + backend), see the setup instructions in the team repository: github.com/bit-loi/Flame-Prophet
 
 ## Team
 Group final project — Artificial Intelligence course, BINUS University.
